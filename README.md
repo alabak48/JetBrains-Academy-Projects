@@ -1,6 +1,6 @@
 
 
-<h2>Project: PHOTO SLIDER</h2>
+<h2>PHOTO SLIDER</h2>
 <br>
 <p>Project: PHOTO SLIDER</p>
 <br>
