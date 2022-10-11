@@ -1,4 +1,4 @@
-# JetBrains-Academy-Projects
+
 
 <h2>Project: PHOTO SLIDER</h2>
 <br>
