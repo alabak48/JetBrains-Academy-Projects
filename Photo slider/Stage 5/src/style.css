@@ -1,24 +1,20 @@
-*, *::before, *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-}
+@import url('https://fonts.googleapis.com/css2?family=Cardo&family=Patua+One&display=swap');
+
 body {
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 25px;
-    background-image: linear-gradient(120deg, #272424, #525252);
-    font-family: Tahoma, sans-serif;
+    background-image: linear-gradient(120deg, #ffffff, #f6f4f4);
+    overflow-y: hidden;
 }
 
 .slider-wrapper {
     position: relative;
 }
+
 .slider {
     width: clamp(320px, 75vw, 800px);
     height: clamp(240px, 75vh, 600px);
@@ -26,7 +22,7 @@ body {
     grid-auto-flow: column;
     scroll-snap-type: x mandatory;
     max-width: clamp(320px, 75vw, 800px);;
-    border: 5px solid rgba(255, 255, 255, 0.234);
+    border: 15px solid rgba(255, 255, 255, 0.234);
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2), 0 2px 20px rgba(0, 0, 0, 0.25);
     overflow-y: hidden;
     overflow-x: auto;
@@ -73,4 +69,10 @@ body {
     margin-top: 25px;
     color: #999;
     letter-spacing: 0.5px;
+}
+
+h1{
+    font-size: 29pt;
+    color: rgb(62, 62, 62);
+    font-family: 'Cardo', serif;
 }
