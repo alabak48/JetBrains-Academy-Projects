@@ -60,12 +60,12 @@ class Test extends StageTest {
                     wrong(`Please, check border properties.`)
             }),
 
-                // Test 7 - Check box-shadow
-                this.node.execute(async () => {
-                    const containerComputedStyles = await container.getComputedStyles()
+        // Test 7 - Check box-shadow
+             this.node.execute(async () => {
+                 const containerComputedStyles = await container.getComputedStyles()
 
-                    if (containerComputedStyles.box-shadow: !== '0 2px 15px rgba(0, 0, 0, 0.2), 0 2px 20px rgba(0, 0, 0, 0.25)') {
-                        return wrong('Please check box-shadow properties')
+                  if (containerComputedStyles.box-shadow: !== '0 2px 15px rgba(0, 0, 0, 0.2), 0 2px 20px rgba(0, 0, 0, 0.25)') {
+                     return wrong('Please check box-shadow properties')
                     }),
 
 
