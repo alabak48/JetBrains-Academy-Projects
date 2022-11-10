@@ -34,14 +34,24 @@ class Test extends StageTest {
 
         // Test 4 - Check width and height of container 'slider'
         this.node.execute(async () => {
-            let sliderWidth = await this.page.evaluate(async () => {
+            let slider = await this.page.evaluate(async () => {
                 let slider = document.getElementById('slider');
-                return [slider.getBoundingClientRect().width, slider.getBoundingClientRect().height];
+                let neededSliderWidth = Math.round(window.innerWidth / 100 * 75);
+                let neededSliderHeight = Math.round(window.innerHeight / 100 * 75);
+                neededSliderWidth = neededSliderWidth < 320 ? 320 : (neededSliderWidth > 800 ? 800 : neededSliderWidth);
+                neededSliderHeight = neededSliderHeight < 240 ? 240 : (neededSliderHeight > 600 ? 600 : neededSliderHeight);
+                return {
+                    'width': slider.getBoundingClientRect().width,
+                    'height': slider.getBoundingClientRect().height,
+                    'neededWidth': neededSliderWidth,
+                    'neededHeight': neededSliderHeight
+                }
             });
 
-            return sliderWidth[0] === 828 && Math.abs(sliderWidth[1] - 500) < 2 ?
+            return  Math.abs(slider.width - slider.neededWidth) < 2 && Math.abs(slider.height - slider.neededHeight) < 2 ?
                 correct() :
-                wrong(`Check size of slider container.`);
+                wrong(`Check dimensions of #slider (now you have width=${slider.width} and height=${slider.height},
+                 but according to the dimensions of the window, its dimensions should be: width=${slider.neededWidth} and height=${slider.neededHeight}`);
         }),
 
         // Test 5 - Check max-width of container 'slider'
