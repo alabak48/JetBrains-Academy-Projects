@@ -40,6 +40,7 @@ class Test extends StageTest {
                 let neededSliderHeight = Math.round(window.innerHeight / 100 * 75);
                 neededSliderWidth = neededSliderWidth < 320 ? 320 : (neededSliderWidth > 800 ? 800 : neededSliderWidth);
                 neededSliderHeight = neededSliderHeight < 240 ? 240 : (neededSliderHeight > 600 ? 600 : neededSliderHeight);
+
                 return {
                     'width': slider.getBoundingClientRect().width,
                     'height': slider.getBoundingClientRect().height,
@@ -53,6 +54,7 @@ class Test extends StageTest {
                 wrong(`Check dimensions of #slider (now you have width=${slider.width} and height=${slider.height},
                  but according to the dimensions of the window, its dimensions should be: width=${slider.neededWidth} and height=${slider.neededHeight}`);
         }),
+
 
         // Test 5 - Check max-width of container '.slider'
         this.node.execute(async () => {
@@ -82,17 +84,18 @@ class Test extends StageTest {
 
         // Test 7 - Check box-shadow
              this.node.execute(async () => {
-                 const containerComputedStyles = await container.getComputedStyles()
+                 const containerComputedStyles = await container.getComputedStyles();
 
-                  if (containerComputedStyles.box-shadow: !== '0 2px 15px rgba(0, 0, 0, 0.2), 0 2px 20px rgba(0, 0, 0, 0.25)') {
+                 if (containerComputedStyles.boxShadow !== '0 2px 15px rgba(0, 0, 0, 0.2), 0 2px 20px rgba(0, 0, 0, 0.25)') {
                      return wrong('Please check box-shadow properties')
-                    }),
 
 
-    ]
+                 }
+                 })
+             ]
+             }
 
-}
-}
+
 
 it("Test stage", async () => {
         await new Test().runTests()

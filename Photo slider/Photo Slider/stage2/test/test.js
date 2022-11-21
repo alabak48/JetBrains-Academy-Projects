@@ -84,9 +84,10 @@ class Test extends StageTest {
         this.node.execute(async () => {
             const containerComputedStyles = await container.getComputedStyles()
 
-            if (containerComputedStyles.box-shadow !== '0 2px 15px rgba(0, 0, 0, 0.2), 0 2px 20px rgba(0, 0, 0, 0.25)') {
+            if (containerComputedStyles.boxShadow !== '0 2px 15px rgba(0, 0, 0, 0.2), 0 2px 20px rgba(0, 0, 0, 0.25)') {
                 return wrong('Please check box-shadow properties')
-            }
+
+            }}),
 
 
             // Test 8 - Check container '.slide-1'
@@ -159,10 +160,10 @@ class Test extends StageTest {
                         correct() :
                         wrong(`Please, check item alignment.`)
                 }),
-
+]}
 
 
             it("Test stage", async () => {
                     await new Test().runTests()
                 }
-            ).timeout(30000);}
+            ).timeout(30000)
