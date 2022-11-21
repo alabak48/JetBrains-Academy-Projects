@@ -118,12 +118,12 @@ class Test extends StageTest {
                 }),
 
                 //Test 11 - Check Images
-                this.page.execute(() => {
-                    let backgroundImage = window.getComputedStyle(this.summary).backgroundImage
-                    return  backgroundImage === 'url()' ?
-                        correct() :
-                        wrong(`Please, insert background images`)
-                }),
+            this.page.execute(() => {
+            let backgroundImage = window.getComputedStyle(this.summary).backgroundImage
+            return  backgroundImage === 'background-image' ?
+                correct() :
+                wrong(`Please, insert background images`)
+        }),
 
                 //Test 12 - Check min-height
                 this.page.execute(() => {
