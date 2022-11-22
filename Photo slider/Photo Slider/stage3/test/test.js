@@ -7,9 +7,17 @@ class Test extends StageTest {
     page = this.getPage(pagePath)
 
     tests = [
-
+        //Test 17 - check Background cover
+        this.page.execute(() => {
+            let backgroundSize = window.getComputedStyle(this.summary).backgroundSize;
+            return  backgroundSize === cover ?
+                correct() :
+                wrong(`Please, cover the entire background with picture.`)
+            }
+        )
         ]
-    }
+
+}
 
 it("Test stage", async () => {
         await new Test().runTests()
