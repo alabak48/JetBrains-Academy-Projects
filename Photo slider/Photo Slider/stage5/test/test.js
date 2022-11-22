@@ -18,8 +18,9 @@ this.node.execute(async () => {
          correct() :
          wrong(`Please check hovering`)
 }),
-        this.page.execute(() => {
-            let fontsHeading = window.getComputedStyle(document.getElementsByTagName('h1'));
+        // Checks font family, font color and font size of heading 1 element
+        this.page.execute(async() => {
+            let fontsHeading = await this.document.getElementsByTagName('h1');
 
             let fontsColor = fontsHeading.color === 'rgb(62, 62, 62)' && fontsHeading.fontSize === '29pt' && fontsHeading.fontFamily === '\'Cardo\', serif;';
             return fontsColor ?
