@@ -5,9 +5,11 @@ const {StageTest, correct, wrong} = require('hs-test-web');
 class Test extends StageTest {
 
     page = this.getPage(pagePath)
-// Test  - checks a hover
-    tests = [
-this.node.execute(async () => {
+
+
+         tests = [
+             // Test  - checks a hover
+        this.node.execute(async () => {
         const a = await this.page.findBySelector('a');
         await a.hover();
         const hoverLink = await this.page.findBySelector('a:hover');
