@@ -32,10 +32,10 @@ class Test extends StageTest {
                 wrong(`Your page must contain main title`)
         }),
 
-        // Test 4 - Check width and height of container '.slider'
+        // Test 4 - Check width and height of container 'slider'
         this.node.execute(async () => {
             let slider = await this.page.evaluate(async () => {
-                let slider = document.getElementsByClassName('slider');
+                let slider = document.getElementsByClassName('slider')[0];
                 let neededSliderWidth = Math.round(window.innerWidth / 100 * 75);
                 let neededSliderHeight = Math.round(window.innerHeight / 100 * 75);
                 neededSliderWidth = neededSliderWidth < 320 ? 320 : (neededSliderWidth > 800 ? 800 : neededSliderWidth);
