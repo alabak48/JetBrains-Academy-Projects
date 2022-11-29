@@ -73,29 +73,7 @@ class Test extends StageTest {
                 correct() :
                 wrong(`Check dimensions of .slider (now you have width=${slider.width},
          but according to the dimensions of the window, its dimensions should be: width=${slider.neededWidth+30}`);
-        }),
-
-       // Test 6 - Check border
-            this.page.execute(() => {
-                let border = window.getComputedStyle(this.summary).border;
-                return  border === '15px solid rgba(255, 255, 255, 0.234)' ?
-                    correct() :
-                    wrong(`Please, check border properties.`)
-            }),
-
-        // Test 7 - Check box-shadow
-             this.node.execute(async () => {
-                 const containerComputedStyles = await container.getComputedStyles();
-
-                 if (containerComputedStyles.boxShadow !== '0 2px 15px rgba(0, 0, 0, 0.2), 0 2px 20px rgba(0, 0, 0, 0.25)') {
-                     return wrong('Please check box-shadow properties')
-
-
-                 }
-                 })
-             ]
-             }
-
+        })]}
 
 
 it("Test stage", async () => {
