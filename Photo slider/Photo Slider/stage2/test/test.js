@@ -32,14 +32,15 @@ class Test extends StageTest {
                 wrong(`Your page must contain main title`)
         }),
 
-        // Test 4 - Check width and height of container '.slider'
+        // Test 4 - Check width and height of container 'slider'
         this.node.execute(async () => {
             let slider = await this.page.evaluate(async () => {
-                let slider = document.getElementById('slider');
+                let slider = document.getElementsByClassName('slider')[0];
                 let neededSliderWidth = Math.round(window.innerWidth / 100 * 75);
                 let neededSliderHeight = Math.round(window.innerHeight / 100 * 75);
                 neededSliderWidth = neededSliderWidth < 320 ? 320 : (neededSliderWidth > 800 ? 800 : neededSliderWidth);
                 neededSliderHeight = neededSliderHeight < 240 ? 240 : (neededSliderHeight > 600 ? 600 : neededSliderHeight);
+
                 return {
                     'width': slider.getBoundingClientRect().width,
                     'height': slider.getBoundingClientRect().height,
@@ -48,76 +49,60 @@ class Test extends StageTest {
                 }
             });
 
-            return  Math.abs(slider.width - slider.neededWidth) < 2 && Math.abs(slider.height - slider.neededHeight) < 2 ?
+            return  Math.abs(slider.width - (slider.neededWidth+30)) < 2 && Math.abs(slider.height - (slider.neededHeight+30)) < 2 ?
                 correct() :
-                wrong(`Check dimensions of #slider (now you have width=${slider.width} and height=${slider.height},
-                 but according to the dimensions of the window, its dimensions should be: width=${slider.neededWidth} and height=${slider.neededHeight}`);
+                wrong(`Check dimensions of .slider (now you have width=${slider.width} and height=${slider.height},
+         but according to the dimensions of the window, its dimensions should be: width=${slider.neededWidth+30} and height=${slider.neededHeight+30}`);
         }),
 
-        // Test 5 - Check max-width of container '.slider'
+
+        // Test 5 - Check max-width 'slider'
         this.node.execute(async () => {
             let slider = await this.page.evaluate(async () => {
-                let slider = document.getElementById('slider');
-                let neededSliderMaxWidth = Math.round(window.innerWidth / 100 * 75);
-                neededSliderMaxWidth = neededSliderMaxWidth < 320 ? 320 : (neededSliderMaxWidth > 800 ? 800 : neededSliderMaxWidth);
+                let slider = document.getElementsByClassName('slider')[0];
+                let neededSliderWidth = Math.round(window.innerWidth / 100 * 75);
+                neededSliderWidth = neededSliderWidth < 320 ? 320 : (neededSliderWidth > 800 ? 800 : neededSliderWidth);
+
                 return {
                     'width': slider.getBoundingClientRect().width,
-                    'neededMaxWidth': neededSliderMaxWidth
+                    'neededWidth': neededSliderWidth
                 }
             });
 
-            return  Math.abs(slider.MaxWidth - slider.neededMaxWidth) < 2 ?
+            return  Math.abs(slider.width - (slider.neededWidth+30)) < 2 ?
                 correct() :
-                wrong(`Check dimensions of #slider (now you have max-width=${slider.width},
-                 but according to the dimensions of the window, its dimensions should be: max-width=${slider.neededWidth}`);
+                wrong(`Check dimensions of .slider (now you have width=${slider.width},
+         but according to the dimensions of the window, its dimensions should be: width=${slider.neededWidth+30}`);
         }),
 
-        // Test 6 - Check border
-        this.page.execute(() => {
-            let border = window.getComputedStyle(this.summary).border;
-            return  border === '15px solid rgba(255, 255, 255, 0.234)' ?
+            // Test 6 - Check container '.slide-1'
+
+        this.node.execute(async() => {
+            const wrapper = await this.page.findById('slide-1');
+            return wrapper ?
                 correct() :
-                wrong(`Please, check border properties.`)
+                wrong(`Your page must contain a slide-1 container.`)
         }),
 
-        // Test 7 - Check box-shadow
-        this.node.execute(async () => {
-            const containerComputedStyles = await container.getComputedStyles()
-
-            if (containerComputedStyles.boxShadow !== '0 2px 15px rgba(0, 0, 0, 0.2), 0 2px 20px rgba(0, 0, 0, 0.25)') {
-                return wrong('Please check box-shadow properties')
-
-            }}),
-
-
-            // Test 8 - Check container '.slide-1'
-
-            this.node.execute(async() => {
-                const wrapper = await this.page.findById('.slide-1');
-                return wrapper ?
-                    correct() :
-                    wrong(`Your page must contain a slide-1 element.`)
-            }),
-
-                // Test 9 - Check container '.slide-2'
+                // Test 7 - Check container '.slide-2'
 
                 this.node.execute(async() => {
-                    const wrapper = await this.page.findById('.slide-2');
+                    const wrapper = await this.page.findById('slide-2');
                     return wrapper ?
                         correct() :
                         wrong(`Your page must contain a slide-2 element.`)
                 }),
 
-                // Test 10 - Check container '.slide-3'
+                // Test 8 - Check container '.slide-3'
 
                 this.node.execute(async() => {
-                    const wrapper = await this.page.findById('.slide-3');
+                    const wrapper = await this.page.findById('slide-3');
                     return wrapper ?
                         correct() :
                         wrong(`Your page must contain a slide-3 element.`)
                 }),
 
-                //Test 11 - Check Images
+                //Test 9 - Check Images
             this.page.execute(() => {
             let backgroundImage = window.getComputedStyle(this.summary).backgroundImage
             return  backgroundImage === 'background-image' ?
@@ -125,35 +110,35 @@ class Test extends StageTest {
                 wrong(`Please, insert background images`)
         }),
 
-                //Test 12 - Check min-height
+                //Test 10 - Check min-height
                 this.page.execute(() => {
                     let minHeight = window.getComputedStyle(this.summary).minHeight;
                     return  minHeight === '100vh)' ?
                         correct() :
                         wrong(`Please, check minimum height properties.`)
                 }),
-                //Test 13 - Check display
+                //Test 11 - Check display
                 this.page.execute(() => {
                     let display = window.getComputedStyle(this.summary).display;
                     return  display === 'flex' ?
                         correct() :
                         wrong(`Please, check the display property.`)
                 }),
-                //Test 14 - check flex-direction
+                //Test 12 - check flex-direction
                 this.page.execute(() => {
                     let flexDirection = window.getComputedStyle(this.summary).flexDirection;
                     return  flexDirection === 'column' ?
                         correct() :
                         wrong(`Please, check flex direction.`)
                 }),
-                //Test 15 - check justify-content
+                //Test 13 - check justify-content
                 this.page.execute(() => {
                     let justifyContent = window.getComputedStyle(this.summary).justifyContent;
                     return  justifyContent === 'center' ?
                         correct() :
                         wrong(`Please, check content alignment.`)
                 }),
-                //Test 16 - check flex-direction
+                //Test 14 - check flex-direction
                 this.page.execute(() => {
                     let alignItems = window.getComputedStyle(this.summary).alignItems;
                     return  alignItems === 'center' ?
