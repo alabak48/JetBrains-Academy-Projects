@@ -102,51 +102,7 @@ class Test extends StageTest {
                         wrong(`Your page must contain a slide-3 element.`)
                 }),
 
-                //Test 9 - Check Images
-            this.page.execute(() => {
-            let backgroundImage = window.getComputedStyle(this.summary).backgroundImage
-            return  backgroundImage === 'background-image' ?
-                correct() :
-                wrong(`Please, insert background images`)
-        }),
-
-                //Test 10 - Check min-height
-                this.page.execute(() => {
-                    let minHeight = window.getComputedStyle(this.summary).minHeight;
-                    return  minHeight === '100vh)' ?
-                        correct() :
-                        wrong(`Please, check minimum height properties.`)
-                }),
-                //Test 11 - Check display
-                this.page.execute(() => {
-                    let display = window.getComputedStyle(this.summary).display;
-                    return  display === 'flex' ?
-                        correct() :
-                        wrong(`Please, check the display property.`)
-                }),
-                //Test 12 - check flex-direction
-                this.page.execute(() => {
-                    let flexDirection = window.getComputedStyle(this.summary).flexDirection;
-                    return  flexDirection === 'column' ?
-                        correct() :
-                        wrong(`Please, check flex direction.`)
-                }),
-                //Test 13 - check justify-content
-                this.page.execute(() => {
-                    let justifyContent = window.getComputedStyle(this.summary).justifyContent;
-                    return  justifyContent === 'center' ?
-                        correct() :
-                        wrong(`Please, check content alignment.`)
-                }),
-                //Test 14 - check flex-direction
-                this.page.execute(() => {
-                    let alignItems = window.getComputedStyle(this.summary).alignItems;
-                    return  alignItems === 'center' ?
-                        correct() :
-                        wrong(`Please, check item alignment.`)
-                }),
-]}
-
+    ]}
 
             it("Test stage", async () => {
                     await new Test().runTests()
