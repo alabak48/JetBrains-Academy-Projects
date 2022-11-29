@@ -49,10 +49,10 @@ class Test extends StageTest {
                 }
             });
 
-            return  Math.abs(slider.width - slider.neededWidth+30) < 2 && Math.abs(slider.height - slider.neededHeight+30) < 2 < 2 ?
+            return  Math.abs(slider.width - (slider.neededWidth+30)) < 2 && Math.abs(slider.height - (slider.neededHeight+30)) < 2 ?
                 correct() :
                 wrong(`Check dimensions of .slider (now you have width=${slider.width} and height=${slider.height},
-                 but according to the dimensions of the window, its dimensions should be: width=${slider.neededWidth+30} and height=${slider.neededHeight+30}`);
+         but according to the dimensions of the window, its dimensions should be: width=${slider.neededWidth+30} and height=${slider.neededHeight+30}`);
         }),
 
 
