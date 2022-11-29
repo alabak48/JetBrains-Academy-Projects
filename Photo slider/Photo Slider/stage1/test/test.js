@@ -56,22 +56,23 @@ class Test extends StageTest {
         }),
 
 
-        // Test 5 - Check max-width of container '.slider'
+        // Test 5 - Check max-width 'slider'
         this.node.execute(async () => {
             let slider = await this.page.evaluate(async () => {
-                let slider = document.getElementById('slider');
-                let neededSliderMaxWidth = Math.round(window.innerWidth / 100 * 75);
-                neededSliderMaxWidth = neededSliderMaxWidth < 320 ? 320 : (neededSliderMaxWidth > 800 ? 800 : neededSliderMaxWidth);
+                let slider = document.getElementsByClassName('slider')[0];
+                let neededSliderWidth = Math.round(window.innerWidth / 100 * 75);
+                neededSliderWidth = neededSliderWidth < 320 ? 320 : (neededSliderWidth > 800 ? 800 : neededSliderWidth);
+
                 return {
                     'width': slider.getBoundingClientRect().width,
-                    'neededMaxWidth': neededSliderMaxWidth
+                    'neededWidth': neededSliderWidth
                 }
             });
 
-            return  Math.abs(slider.MaxWidth - slider.neededMaxWidth) < 2 ?
+            return  Math.abs(slider.width - (slider.neededWidth+30)) < 2 ?
                 correct() :
-                wrong(`Check dimensions of #slider (now you have max-width=${slider.width},
-                 but according to the dimensions of the window, its dimensions should be: max-width=${slider.neededWidth}`);
+                wrong(`Check dimensions of .slider (now you have width=${slider.width},
+         but according to the dimensions of the window, its dimensions should be: width=${slider.neededWidth+30}`);
         }),
 
        // Test 6 - Check border
