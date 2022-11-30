@@ -102,6 +102,14 @@ class Test extends StageTest {
                         wrong(`Your page must contain a slide-3 element.`)
                 }),
 
+                // Test 9 - Check border
+                this.page.execute(() => {
+                    this.articleObj = document.querySelectorAll('.slider')
+                 let styles = window.getComputedStyle(this.articleObj[0]);
+                 return styles.border === "15px" && styles.borderStyle === "solid" && styles.backgroundColor === "rgba(255, 255, 255, 0.234)" ?
+                correct() :
+                wrong('Check border of slider.')})
+
     ]}
 
             it("Test stage", async () => {
