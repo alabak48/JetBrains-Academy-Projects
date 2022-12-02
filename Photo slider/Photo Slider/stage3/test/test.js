@@ -195,8 +195,7 @@ class Test extends StageTest {
                 wrong(`Set box shadow to the slider container You answer: ${styles.border}`)
         }),
 
-
-fgfgf
+        
 
     ]};
 
