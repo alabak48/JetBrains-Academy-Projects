@@ -215,6 +215,17 @@ class Test extends StageTest {
                 wrong(`The background image must cover the entire slide container. You answer: ${styles.backgroundPosition}`)
         }),
 
+        // Test 19 - Check background position
+        
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.slide')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.backgroundPosition === "50% 50%" ?
+                correct() :
+                wrong(`The background image should be placed in the center. You answer: ${styles.backgroundPosition}`)
+        }),
+
+
     ]};
 
 it("Test stage", async () => {
