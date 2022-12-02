@@ -103,12 +103,12 @@ class Test extends StageTest {
                 }),
 
                 // Test 9 - Check border
-                this.page.execute(() => {
-                    this.articleObj = document.querySelectorAll('.slider')
-                 let styles = window.getComputedStyle(this.articleObj[0]);
-                 return styles.borderWidth === "15px" && styles.borderStyle === "solid" && styles.borderColor === "rgba(255, 255, 255, 0.234)" ?
+        this.page.execute(() => {
+            this.articleObj = document.querySelectorAll('.slider')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.borderWidth === "15px" && styles.borderStyle === "solid" && styles.borderColor === "rgba(255, 255, 255, 0.234)" ?
                 correct() :
-                wrong('Check border of slider.')})
+                wrong('Check border of slider.')}),
 
     ]}
 
