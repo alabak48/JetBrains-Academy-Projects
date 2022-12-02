@@ -140,16 +140,65 @@ class Test extends StageTest {
          but according to the dimensions of the window, its dimensions should be: height=${slide.neededHeight}`);
         }),
 
-        // Test 11 - Check background-size
-        this.page.execute(() => {
-            this.articleObj = document.getElementsByClassName('slide')
+        // Test 11 - Check overflow x of slider
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.slider')
             let styles = window.getComputedStyle(this.articleObj[0]);
-            if(styles.backgroundPosition.length !== 'center'){
-                return wrong('wrong background position')
-            }
-                })
+            return styles.overflowX === "auto" ?
+                correct() :
+                wrong(`Check overflow x of slider. You answer: ${styles.overflowX}`)
+        }),
 
-    ]}
+        // Test 12 - Check overflow y of slider
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.slider')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.overflowY === "hidden" ?
+                correct() :
+                wrong(`Check overflow y of slider You answer: ${styles.overflowY}`)
+        }),
+
+        // Test 13 - Check overflow y of slider
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.slider')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.scrollSnapType === "x mandatory" ?
+                correct() :
+                wrong(`Check scroll Snap Type of slider You answer: ${styles.scrollSnapType}`)
+        }),
+
+        // Test 14 - Check overflow y of slider
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.slider')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.gridAutoFlow === "column" ?
+                correct() :
+                wrong(`gridAutoFlow You answer: ${styles.gridAutoFlow}`)
+        }),
+
+        // Test 15 - Check box-shado of slider
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.slider')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.boxShadow === "rgba(0, 0, 0, 0.2) 0px 2px 15px 0px, rgba(0, 0, 0, 0.25) 0px 2px 20px 0px" ?
+                correct() :
+                wrong(`Set box shadow to the slider container You answer: ${styles.boxShadow}`)
+        }),
+
+        // Test 15 - Check border of a slider
+
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.slider')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.border === "15px solid rgba(255, 255, 255, 0.235)" ?
+                correct() :
+                wrong(`Set box shadow to the slider container You answer: ${styles.border}`)
+        }),
+
+
+
+
+    ]};
 
 it("Test stage", async () => {
         await new Test().runTests()
