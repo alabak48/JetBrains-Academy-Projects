@@ -167,16 +167,8 @@ class Test extends StageTest {
                 wrong(`Check scroll snap type of slider.`)
         }),
 
-        // Test 14 - Check overflow y of slider
-        this.page.execute(async() => {
-            this.articleObj = await document.querySelectorAll('.slider')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.gridAutoFlow === "column" ?
-                correct() :
-                wrong(`Your grid flow is incorrect.`)
-        }),
 
-        // Test 15 - Check box-shadow of slider
+        // Test 14 - Check box-shadow of slider
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slider')
             let styles = window.getComputedStyle(this.articleObj[0]);
@@ -185,17 +177,8 @@ class Test extends StageTest {
                 wrong(`Set box shadow to the slider container.`)
         }),
 
-        // Test 16 - Check border of a slider
 
-        this.page.execute(async() => {
-            this.articleObj = await document.querySelectorAll('.slider')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.border === "15px solid rgba(255, 255, 255, 0.235)" ?
-                correct() :
-                wrong(`Set border to the slider as shown on the image.`)
-        }),
-
-        // Test 17 - Check background repeat
+        // Test 15 - Check background repeat
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slide')
@@ -205,7 +188,7 @@ class Test extends StageTest {
                 wrong(`The background picture is repeated.`)
         }),
 
-        // Test 18 - Check background size
+        // Test 16 - Check background size
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slide')
@@ -215,7 +198,7 @@ class Test extends StageTest {
                 wrong(`The background image must cover the entire slide container.`)
         }),
 
-        // Test 19 - Check background position
+        // Test 17 - Check background position
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slide')

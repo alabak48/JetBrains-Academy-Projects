@@ -102,13 +102,25 @@ class Test extends StageTest {
                         wrong(`Your page must contain a slide-3 element.`)
                 }),
 
-                // Test 9 - Check border
-        this.page.execute(() => {
-            this.articleObj = document.querySelectorAll('.slider')
+        // Test 9 - Check border of a slider
+
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.slider')
             let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.borderWidth === "15px" && styles.borderStyle === "solid" && styles.borderColor === "rgba(255, 255, 255, 0.234)" ?
+            return styles.border === "15px solid rgba(255, 255, 255, 0.235)" ?
                 correct() :
-                wrong('Check border of slider.')}),
+                wrong(`Set border to the slider as shown on the image.`)
+        }),
+
+        // Test 10 - Check overflow y of slider
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.slider')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.gridAutoFlow === "column" ?
+                correct() :
+                wrong(`Your grid flow is incorrect.`)
+        })
+
 
     ]}
 
