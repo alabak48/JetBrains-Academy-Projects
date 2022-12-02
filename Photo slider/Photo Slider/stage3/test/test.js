@@ -117,7 +117,7 @@ class Test extends StageTest {
 
             return  Math.abs(slide.width - (slide.neededWidth)) < 2 ?
                 correct() :
-                wrong(`Check dimensions of .slider (now you have width=${slide.width},
+                wrong(`Check dimensions of .slide (now you have width=${slide.width},
          but according to the dimensions of the window, its dimensions should be: width=${slide.neededWidth}`);
         }),
 
@@ -136,7 +136,7 @@ class Test extends StageTest {
 
             return  Math.abs(slide.height - (slide.neededHeight+79)) < 2 ?
                 correct() :
-                wrong(`Check dimensions of .slider (now you have height=${slide.height},
+                wrong(`Check dimensions of .slide (now you have height=${slide.height},
          but according to the dimensions of the window, its dimensions should be: height=${slide.neededHeight}`);
         }),
 
@@ -146,7 +146,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.overflowX === "auto" ?
                 correct() :
-                wrong(`Check overflow x of slider. You answer: ${styles.overflowX}`)
+                wrong(`Check overflow x of slider.`)
         }),
 
         // Test 12 - Check overflow y of slider
@@ -155,7 +155,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.overflowY === "hidden" ?
                 correct() :
-                wrong(`Check overflow y of slider You answer: ${styles.overflowY}`)
+                wrong(`Check overflow y of slider You answer.`)
         }),
 
         // Test 13 - Check overflow y of slider
@@ -164,7 +164,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.scrollSnapType === "x mandatory" ?
                 correct() :
-                wrong(`Check scroll Snap Type of slider You answer: ${styles.scrollSnapType}`)
+                wrong(`Check scroll snap type of slider.`)
         }),
 
         // Test 14 - Check overflow y of slider
@@ -173,16 +173,16 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.gridAutoFlow === "column" ?
                 correct() :
-                wrong(`gridAutoFlow You answer: ${styles.gridAutoFlow}`)
+                wrong(`Your grid flow is incorrect.`)
         }),
 
-        // Test 15 - Check box-shado of slider
+        // Test 15 - Check box-shadow of slider
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slider')
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.boxShadow === "rgba(0, 0, 0, 0.2) 0px 2px 15px 0px, rgba(0, 0, 0, 0.25) 0px 2px 20px 0px" ?
                 correct() :
-                wrong(`Set box shadow to the slider container You answer: ${styles.boxShadow}`)
+                wrong(`Set box shadow to the slider container.`)
         }),
 
         // Test 16 - Check border of a slider
@@ -192,7 +192,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.border === "15px solid rgba(255, 255, 255, 0.235)" ?
                 correct() :
-                wrong(`Set box shadow to the slider container You answer: ${styles.border}`)
+                wrong(`Set border to the slider as shown on the image.`)
         }),
 
         // Test 17 - Check background repeat
@@ -202,7 +202,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.backgroundRepeat === "no-repeat" ?
                 correct() :
-                wrong(`The background picture is repeated. You answer: ${styles.backgroundRepeat}`)
+                wrong(`The background picture is repeated.`)
         }),
 
         // Test 18 - Check background size
@@ -212,17 +212,17 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.backgroundSize === "cover" ?
                 correct() :
-                wrong(`The background image must cover the entire slide container. You answer: ${styles.backgroundPosition}`)
+                wrong(`The background image must cover the entire slide container.`)
         }),
 
         // Test 19 - Check background position
-        
+
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slide')
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.backgroundPosition === "50% 50%" ?
                 correct() :
-                wrong(`The background image should be placed in the center. You answer: ${styles.backgroundPosition}`)
+                wrong(`The background image should be placed in the center.`)
         }),
 
 
