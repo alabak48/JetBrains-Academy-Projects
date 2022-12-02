@@ -185,7 +185,7 @@ class Test extends StageTest {
                 wrong(`Set box shadow to the slider container You answer: ${styles.boxShadow}`)
         }),
 
-        // Test 15 - Check border of a slider
+        // Test 16 - Check border of a slider
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slider')
@@ -195,7 +195,25 @@ class Test extends StageTest {
                 wrong(`Set box shadow to the slider container You answer: ${styles.border}`)
         }),
 
-        
+        // Test 17 - Check background repeat
+
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.slide')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.backgroundRepeat === "no-repeat" ?
+                correct() :
+                wrong(`The background picture is repeated. You answer: ${styles.backgroundRepeat}`)
+        }),
+
+        // Test 18 - Check background size
+
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.slide')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.backgroundSize === "cover" ?
+                correct() :
+                wrong(`The background image must cover the entire slide container. You answer: ${styles.backgroundPosition}`)
+        }),
 
     ]};
 
