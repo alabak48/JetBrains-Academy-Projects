@@ -227,9 +227,7 @@ class Test extends StageTest {
                 correct() :
                 wrong(`Set scroll from the start`)
         }),
-
-
-
+        
     ]};
 
 it("Test stage", async () => {
