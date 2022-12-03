@@ -218,7 +218,17 @@ class Test extends StageTest {
                 wrong(`The scroll of the slider should be smooth.`)
         }),
 
-        
+        // Test 19 - Check scroll snap align
+
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.slide')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.scrollSnapAlign === "start" ?
+                correct() :
+                wrong(`Set scroll from the start`)
+        }),
+
+
 
     ]};
 
