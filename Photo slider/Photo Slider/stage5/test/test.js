@@ -335,6 +335,27 @@ class Test extends StageTest {
                 correct() :
                 wrong(`Wrong content alignment`)
         }),
+
+        // Test 31 - Checks 3 a elements
+
+        this.page.execute(() => {
+            this.articleObj = document.getElementsByTagName('a');
+
+            return this.articleObj.length === 3 ?
+                correct() :
+                wrong(`Your page should contain 3 a elements inside .dots container.`)
+        }),
+
+        // Test 32 - Checks width and height of a elements
+
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('a')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.width === "8px" && styles.height === "8px" ?
+                correct() :
+                wrong(`Check width and height of the a element`)
+        }),
+
     ]};
 
 it("Test stage", async () => {
