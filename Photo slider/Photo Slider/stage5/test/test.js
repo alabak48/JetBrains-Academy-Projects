@@ -405,27 +405,8 @@ class Test extends StageTest {
                 wrong(`Smoothly change the opacity state of dots`)
         }),
 
-        // Test 32 - Checks transition of a elements
 
-        this.page.execute(async() => {
-            this.articleObj = await document.getElementsByTagName('a')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.transition === "opacity 0.25s ease 0s" ?
-                correct() :
-                wrong(`Smoothly change the opacity state of dots`)
-        }),
-
-        // Test 32 - Checks transition of a elements
-
-        this.page.execute(async() => {
-            this.articleObj = await document.getElementsByTagName('a')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.cursor === "pointer" ?
-                correct() :
-                wrong(`Show when the mouse pointer is over the dots`)
-        }),
-
-        // Test 32 - Checks transition of a elements
+        // Test 32 - Checks cursor pointer
 
         this.page.execute(async() => {
             this.articleObj = await document.getElementsByTagName('a')
@@ -450,15 +431,77 @@ class Test extends StageTest {
                 wrong(`Please check the dots hovering.`)
         }),
 
-        // Test 32 - Checks dots hovering
+
+        // Test 32 - Checks caption display block
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.caption')
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.display === "block" ?
                 correct() :
-                wrong(`Display caption container as a block element`)
+                wrong(`Displays element as a block element`)
         }),
+
+        // Test 32 - Checks margin top of a caption container
+
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.caption')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.marginTop === "25px" ?
+                correct() :
+                wrong(`Check the top margin of container element`)
+        }),
+
+        // Test 32 - Checks margin top of a caption container
+
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.caption')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.backgroundColor === "rgba(0, 0, 0, 0)" ?
+                correct() :
+                wrong(`Your caption should be gray.`)
+        }),
+
+        // Test 32 - Checks letter spacing of caption
+
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.caption')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.letterSpacing === "0.5px" ?
+                correct() :
+                wrong(`Space the letters by 0.5px.`)
+        }),
+
+        // Test 32 - Checks font-size of h1 element
+
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('h1')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.fontSize === "38.6667px" ?
+                correct() :
+                wrong(`Check font size of main heading.`)
+        }),
+
+        // Test 32 - Checks color of h1 element
+
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('h1')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.color === "rgb(62, 62, 62)" ?
+                correct() :
+                wrong(`Check color of main heading.`)
+        }),
+
+        // Test 32 - Checks font-family of h1 element
+
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('h1')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.fontFamily !== `Cardo, serif` ?
+                wrong(`Check color of main heading.`) : correct()
+        }),
+
+
 
 
 
