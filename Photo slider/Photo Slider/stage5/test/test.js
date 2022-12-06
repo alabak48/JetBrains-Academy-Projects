@@ -2,6 +2,14 @@ const path = require('path');
 const pagePath = path.join(__dirname, '../src/index.html');
 const {StageTest, correct, wrong} = require('hs-test-web');
 
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+}
+
 class Test extends StageTest {
 
     page = this.getPage(pagePath)
@@ -355,6 +363,104 @@ class Test extends StageTest {
                 correct() :
                 wrong(`Check width and height of the a element`)
         }),
+
+        // Test 32 - Checks border radius of a elements
+
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('a')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.borderRadius === "50%" ?
+                correct() :
+                wrong(`Your dots should be round`)
+        }),
+
+        // Test 32 - Checks background color of a elements
+
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('a')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.backgroundColor === "rgb(255, 255, 255)" ?
+                correct() :
+                wrong(`Your dots should be white.`)
+        }),
+
+
+        // Test 32 - Checks opacity of a elements
+
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('a')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.opacity === "0.75" ?
+                correct() :
+                wrong(`Your dots should be transparent`)
+        }),
+
+        // Test 32 - Checks transition of a elements
+
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('a')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.transition === "opacity 0.25s ease 0s" ?
+                correct() :
+                wrong(`Smoothly change the opacity state of dots`)
+        }),
+
+        // Test 32 - Checks transition of a elements
+
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('a')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.transition === "opacity 0.25s ease 0s" ?
+                correct() :
+                wrong(`Smoothly change the opacity state of dots`)
+        }),
+
+        // Test 32 - Checks transition of a elements
+
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('a')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.cursor === "pointer" ?
+                correct() :
+                wrong(`Show when the mouse pointer is over the dots`)
+        }),
+
+        // Test 32 - Checks transition of a elements
+
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('a')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.cursor === "pointer" ?
+                correct() :
+                wrong(`Show when the mouse pointer is over the dots`)
+        }),
+
+        // Test 32 - Checks dots hovering
+
+        this.node.execute(async () => {
+            const a = await this.page.findBySelector('a');
+            await a.hover();
+            sleep(400);
+            const hoverA = await this.page.findBySelector('a:hover');
+
+            const styles = await hoverA.getComputedStyles();
+
+            return styles.opacity=== '1' ?
+                correct() :
+                wrong(`Please check the dots hovering.`)
+        }),
+
+        // Test 32 - Checks dots hovering
+
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.caption')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.display === "block" ?
+                correct() :
+                wrong(`Display caption container as a block element`)
+        }),
+
+
 
     ]};
 
