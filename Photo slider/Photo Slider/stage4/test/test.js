@@ -226,8 +226,9 @@ class Test extends StageTest {
             return styles.scrollSnapAlign === "start" ?
                 correct() :
                 wrong(`Set scroll from the start`)
-        }),
-        
+        })
+
+
     ]};
 
 it("Test stage", async () => {
