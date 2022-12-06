@@ -256,7 +256,7 @@ class Test extends StageTest {
                 wrong(`Wrong position of dots container.`)
         }),
 
-        // Test 22 - Check dots bottom
+        // Test 23 - Check dots bottom
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -266,7 +266,7 @@ class Test extends StageTest {
                 wrong(`Your dots should be at the bottom of the slider.`)
         }),
 
-        // Test 22 - Check dots left
+        // Test 24 - Check dots left
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -276,7 +276,7 @@ class Test extends StageTest {
                 wrong(`Your dots should be at the center of the slider.`)
         }),
 
-        // Test 23 - Check dots transform
+        // Test 25 - Check dots transform
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -286,7 +286,7 @@ class Test extends StageTest {
                 wrong(`Move the dots element exactly at the center of the main container.`)
         }),
 
-        // Test 23 - Check dots gap
+        // Test 26 - Check dots gap
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -296,7 +296,7 @@ class Test extends StageTest {
                 wrong(`The gap between the dots should be set to 15px.`)
         }),
 
-        // Test 23 - Check dots z-index
+        // Test 27 - Check dots z-index
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -306,7 +306,7 @@ class Test extends StageTest {
                 wrong(`Set the z-index of the dots container to 1.`)
         }),
 
-        // Test 23 - Checks dots display
+        // Test 28 - Checks dots display
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -316,7 +316,7 @@ class Test extends StageTest {
                 wrong(`Dots container should be flexible.`)
         }),
 
-        // Test 23 - Checks item alignment
+        // Test 29 - Checks item alignment
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -326,7 +326,7 @@ class Test extends StageTest {
                 wrong(`Wrong item alignment`)
         }),
 
-        // Test 24 - Checks justify content
+        // Test 30 - Checks justify content
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
