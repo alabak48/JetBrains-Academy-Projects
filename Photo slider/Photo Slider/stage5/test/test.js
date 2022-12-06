@@ -283,7 +283,57 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.transform === "matrix(1, 0, 0, 1, -27, 0)" ?
                 correct() :
-                wrong(`Your dots should be at the center of the slider.`)
+                wrong(`Move the dots element exactly at the center of the main container.`)
+        }),
+
+        // Test 23 - Check dots gap
+
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.dots')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.gap === "15px" ?
+                correct() :
+                wrong(`The gap between the dots should be set to 15px.`)
+        }),
+
+        // Test 23 - Check dots z-index
+
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.dots')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.zIndex === "1" ?
+                correct() :
+                wrong(`Set the z-index of the dots container to 1.`)
+        }),
+
+        // Test 23 - Checks dots display
+
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.dots')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.display === "flex" ?
+                correct() :
+                wrong(`Dots container should be flexible.`)
+        }),
+
+        // Test 23 - Checks item alignment
+
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.dots')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.alignItems === "center" ?
+                correct() :
+                wrong(`Wrong item alignment`)
+        }),
+
+        // Test 24 - Checks justify content
+
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.dots')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.justifyContent === "center" ?
+                correct() :
+                wrong(`Wrong content alignment`)
         }),
     ]};
 
