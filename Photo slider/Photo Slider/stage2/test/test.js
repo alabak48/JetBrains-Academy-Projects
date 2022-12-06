@@ -119,6 +119,54 @@ class Test extends StageTest {
             return styles.gridAutoFlow === "column" ?
                 correct() :
                 wrong(`Your grid flow is incorrect.`)
+        }),
+
+        // Test 11 - Checks body min-height
+
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('body')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.minHeight === "864.9px" ?
+                correct() :
+                wrong(`Check the minimum height of the body element`)
+        }),
+
+        // Test 12 - Checks body display flex
+
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('body')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.display === "flex" ?
+                correct() :
+                wrong(`Body element should be set to flexible.`)
+        }),
+
+        // Test 13 - Checks body flex-direction
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('body')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.flexDirection === "column" ?
+                correct() :
+                wrong(`Check the flex direction of the body element.`)
+        }),
+
+        // Test 14 - Checks body justify content
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('body')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.justifyContent === "center" ?
+                correct() :
+                wrong(`Body element content should be set to the center.`)
+        }),
+
+        // Test 15 - Checks body align items
+
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('body')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.alignItems === "center" ?
+                correct() :
+                wrong(`Align body element items to the center`)
         })
 
 

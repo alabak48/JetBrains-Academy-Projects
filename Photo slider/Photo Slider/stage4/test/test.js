@@ -158,7 +158,55 @@ class Test extends StageTest {
                 wrong(`Check overflow y of slider You answer.`)
         }),
 
-        // Test 13 - Check overflow y of slider
+        // Test 11 - Checks body min-height
+
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('body')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.minHeight === "864.9px" ?
+                correct() :
+                wrong(`Check the minimum height of the body element`)
+        }),
+
+        // Test 12 - Checks body display flex
+
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('body')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.display === "flex" ?
+                correct() :
+                wrong(`Body element should be set to flexible.`)
+        }),
+
+        // Test 13 - Checks body flex-direction
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('body')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.flexDirection === "column" ?
+                correct() :
+                wrong(`Check the flex direction of the body element.`)
+        }),
+
+        // Test 14 - Checks body justify content
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('body')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.justifyContent === "center" ?
+                correct() :
+                wrong(`Body element content should be set to the center.`)
+        }),
+
+        // Test 15 - Checks body align items
+
+        this.page.execute(async() => {
+            this.articleObj = await document.getElementsByTagName('body')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.alignItems === "center" ?
+                correct() :
+                wrong(`Align body element items to the center`)
+        }),
+
+        // Test 16 - Check scroll snap of slider
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slider')
             let styles = window.getComputedStyle(this.articleObj[0]);
@@ -168,7 +216,7 @@ class Test extends StageTest {
         }),
 
 
-        // Test 14 - Check box-shadow of slider
+        // Test 17 - Check box-shadow of slider
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slider')
             let styles = window.getComputedStyle(this.articleObj[0]);
@@ -178,7 +226,7 @@ class Test extends StageTest {
         }),
 
 
-        // Test 15 - Check background repeat
+        // Test 18 - Check background repeat
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slide')
@@ -188,7 +236,7 @@ class Test extends StageTest {
                 wrong(`The background picture is repeated.`)
         }),
 
-        // Test 16 - Check background size
+        // Test 19 - Check background size
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slide')
@@ -198,7 +246,7 @@ class Test extends StageTest {
                 wrong(`The background image must cover the entire slide container.`)
         }),
 
-        // Test 17 - Check background position
+        // Test 20 - Check background position
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slide')
@@ -208,7 +256,7 @@ class Test extends StageTest {
                 wrong(`The background image should be placed in the center.`)
         }),
 
-        // Test 18 - Check scroll behavior
+        // Test 21 - Check scroll behavior
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slider')
@@ -218,7 +266,7 @@ class Test extends StageTest {
                 wrong(`The scroll of the slider should be smooth.`)
         }),
 
-        // Test 19 - Check scroll snap align
+        // Test 22 - Check scroll snap align
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slide')
