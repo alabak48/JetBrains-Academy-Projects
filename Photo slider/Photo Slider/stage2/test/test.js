@@ -121,17 +121,8 @@ class Test extends StageTest {
                 wrong(`Your grid flow is incorrect.`)
         }),
 
-        // Test 11 - Checks body min-height
 
-        this.page.execute(async() => {
-            this.articleObj = await document.getElementsByTagName('body')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.minHeight === "864.9px" ?
-                correct() :
-                wrong(`Check the minimum height of the body element`)
-        }),
-
-        // Test 12 - check slider position
+        // Test 11 - check slider position
         this.node.execute(async () => {
             let sliderCoords = await this.page.evaluate(async () => {
                 let slider = document.getElementsByClassName('slider')[0];

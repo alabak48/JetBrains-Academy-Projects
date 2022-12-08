@@ -110,7 +110,28 @@ class Test extends StageTest {
                 wrong(`Your page must contain a slide-3 element.`)
         }),
 
-        // Test 9 - Check container 'slide' width
+        // Test 9 - Check border of a slider
+
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.slider')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.border === "15px solid rgba(255, 255, 255, 0.235)" ?
+                correct() :
+                wrong(`Set border to the slider as shown on the image.`)
+        }),
+
+        // Test 10 - check slider position
+        this.node.execute(async () => {
+            let sliderCoords = await this.page.evaluate(async () => {
+                let slider = document.getElementsByClassName('slider')[0];
+                return [slider.getBoundingClientRect().x, slider.getBoundingClientRect().y];
+            });
+            return sliderCoords[0] === 545 && sliderCoords[1] === 181.84375 ?
+                correct() :
+                wrong(`Check position of slider container.`);
+        }),
+
+        // Test 11 - Check container 'slide' width
         this.node.execute(async () => {
             let slide = await this.page.evaluate(async () => {
                 let slide = document.getElementsByClassName('slide')[0];
@@ -122,14 +143,13 @@ class Test extends StageTest {
                     'neededWidth': neededSliderWidth
                 }
             });
-
             return  Math.abs(slide.width - (slide.neededWidth)) < 2 ?
                 correct() :
                 wrong(`Check dimensions of .slide (now you have width=${slide.width},
          but according to the dimensions of the window, its dimensions should be: width=${slide.neededWidth}`);
         }),
 
-        // Test 10 - Check container 'slide' height
+        // Test 12 - Check container 'slide' height
         this.node.execute(async () => {
             let slide = await this.page.evaluate(async () => {
                 let slide = document.getElementsByClassName('slide')[0];
@@ -148,7 +168,8 @@ class Test extends StageTest {
          but according to the dimensions of the window, its dimensions should be: height=${slide.neededHeight}`);
         }),
 
-        // Test 11 - Check overflow x of slider
+
+        // Test 13 - Check overflow x of slider
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slider')
             let styles = window.getComputedStyle(this.articleObj[0]);
@@ -157,47 +178,17 @@ class Test extends StageTest {
                 wrong(`Check overflow x of slider.`)
         }),
 
-        // Test 12 - check slider position
-        this.node.execute(async () => {
-            let sliderCoords = await this.page.evaluate(async () => {
-                let slider = document.getElementsByClassName('slider')[0];
-                return [slider.getBoundingClientRect().x, slider.getBoundingClientRect().y];
-            });
-            return sliderCoords[0] === 545 && sliderCoords[1] === 165.375 ?
-                correct() :
-                wrong(`Check position of slider container.`);
-        }),
-
-        // Test 16 - Checks body flex-direction
+        // Test 14 - Check overflow y of slider
         this.page.execute(async() => {
-            this.articleObj = await document.getElementsByTagName('body')
+            this.articleObj = await document.querySelectorAll('.slider')
             let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.flexDirection === "column" ?
+            return styles.overflowY === "hidden" ?
                 correct() :
-                wrong(`Check the flex direction of the body element.`)
-        }),
-
-        // Test 17 - Checks body justify content
-        this.page.execute(async() => {
-            this.articleObj = await document.getElementsByTagName('body')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.justifyContent === "center" ?
-                correct() :
-                wrong(`Body element content should be set to the center.`)
-        }),
-
-        // Test 18 - Checks body align items
-
-        this.page.execute(async() => {
-            this.articleObj = await document.getElementsByTagName('body')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.alignItems === "center" ?
-                correct() :
-                wrong(`Align body element items to the center`)
+                wrong(`Check overflow y of slider You answer.`)
         }),
 
 
-        // Test 19 - Check box-shadow of slider
+        // Test 15 - Check box-shadow of slider
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slider')
             let styles = window.getComputedStyle(this.articleObj[0]);
@@ -207,7 +198,7 @@ class Test extends StageTest {
         }),
 
 
-        // Test 20 - Check background repeat
+        // Test 16 - Check background repeat
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slide')
@@ -217,7 +208,7 @@ class Test extends StageTest {
                 wrong(`The background picture is repeated.`)
         }),
 
-        // Test 21 - Check background size
+        // Test 17 - Check background size
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slide')
@@ -227,7 +218,7 @@ class Test extends StageTest {
                 wrong(`The background image must cover the entire slide container.`)
         }),
 
-        // Test 22 - Check background position
+        // Test 18 - Check background position
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slide')
@@ -237,7 +228,7 @@ class Test extends StageTest {
                 wrong(`The background image should be placed in the center.`)
         }),
 
-        // Test 23 - Check scroll behavior
+        // Test 18 - Check scroll behavior
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slider')
@@ -247,7 +238,7 @@ class Test extends StageTest {
                 wrong(`The scroll of the slider should be smooth.`)
         }),
 
-        // Test 24 - Check scroll snap align
+        // Test 22 - Check scroll snap align
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slide')
@@ -257,7 +248,7 @@ class Test extends StageTest {
                 wrong(`Set scroll from the start`)
         }),
 
-        // Test 25 - Check dots container
+        // Test 23 - Check dots container
 
         this.node.execute(async() => {
             const wrapper = await this.page.findBySelector('.dots');
@@ -266,7 +257,7 @@ class Test extends StageTest {
                 wrong(`Your page must contain a dots container.`)
         }),
 
-        // Test 26 - Check caption container
+        // Test 24 - Check caption container
 
         this.node.execute(async() => {
             const wrapper = await this.page.findBySelector('.caption');
@@ -275,7 +266,7 @@ class Test extends StageTest {
                 wrong(`Your page must contain a caption container.`)
         }),
 
-        // Test 27 - Check dots position
+        // Test 25 - Check dots position
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -285,7 +276,7 @@ class Test extends StageTest {
                 wrong(`Wrong position of dots container.`)
         }),
 
-        // Test 28 - Check dots bottom
+        // Test 26 - Check dots bottom
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -295,7 +286,7 @@ class Test extends StageTest {
                 wrong(`Your dots should be at the bottom of the slider.`)
         }),
 
-        // Test 29 - Check dots left
+        // Test 27 - Check dots left
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -305,7 +296,7 @@ class Test extends StageTest {
                 wrong(`Your dots should be at the center of the slider.`)
         }),
 
-        // Test 30 - Check dots transform
+        // Test 28 - Check dots transform
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -315,7 +306,7 @@ class Test extends StageTest {
                 wrong(`Move the dots element exactly at the center of the main container.`)
         }),
 
-        // Test 31 - Check dots gap
+        // Test 29 - Check dots gap
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -325,7 +316,7 @@ class Test extends StageTest {
                 wrong(`The gap between the dots should be set to 15px.`)
         }),
 
-        // Test 32 - Check dots z-index
+        // Test 30 - Check dots z-index
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -335,7 +326,7 @@ class Test extends StageTest {
                 wrong(`Set the z-index of the dots container to 1.`)
         }),
 
-        // Test 33 - Checks dots display
+        // Test 31 - Checks dots display
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -345,7 +336,7 @@ class Test extends StageTest {
                 wrong(`Dots container should be flexible.`)
         }),
 
-        // Test 34 - Checks item alignment
+        // Test 32 - Checks item alignment
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -355,7 +346,7 @@ class Test extends StageTest {
                 wrong(`Wrong item alignment`)
         }),
 
-        // Test 35 - Checks justify content
+        // Test 33 - Checks justify content
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -365,7 +356,7 @@ class Test extends StageTest {
                 wrong(`Wrong content alignment`)
         }),
 
-        // Test 36 - Checks 3 a elements
+        // Test 34 - Checks 3 a elements
 
         this.page.execute(() => {
             this.articleObj = document.getElementsByTagName('a');
@@ -375,7 +366,7 @@ class Test extends StageTest {
                 wrong(`Your page should contain 3 a elements inside .dots container.`)
         }),
 
-        // Test 37 - Checks width and height of a elements
+        // Test 35 - Checks width and height of a elements
 
         this.page.execute(async() => {
             this.articleObj = await document.getElementsByTagName('a')
@@ -385,7 +376,7 @@ class Test extends StageTest {
                 wrong(`Check width and height of the a element`)
         }),
 
-        // Test 38 - Checks border radius of a elements
+        // Test 36 - Checks border radius of a elements
 
         this.page.execute(async() => {
             this.articleObj = await document.getElementsByTagName('a')
@@ -395,7 +386,7 @@ class Test extends StageTest {
                 wrong(`Your dots should be round`)
         }),
 
-        // Test 39 - Checks background color of a elements
+        // Test 37 - Checks background color of a elements
 
         this.page.execute(async() => {
             this.articleObj = await document.getElementsByTagName('a')
@@ -406,7 +397,7 @@ class Test extends StageTest {
         }),
 
 
-        // Test 40 - Checks opacity of a elements
+        // Test 38 - Checks opacity of a elements
 
         this.page.execute(async() => {
             this.articleObj = await document.getElementsByTagName('a')
@@ -416,7 +407,7 @@ class Test extends StageTest {
                 wrong(`Your dots should be transparent`)
         }),
 
-        // Test 41 - Checks transition of a elements
+        // Test 39 - Checks transition of a elements
 
         this.page.execute(async() => {
             this.articleObj = await document.getElementsByTagName('a')
@@ -427,7 +418,7 @@ class Test extends StageTest {
         }),
 
 
-        // Test 42 - Checks cursor pointer
+        // Test 40 - Checks cursor pointer
 
         this.page.execute(async() => {
             this.articleObj = await document.getElementsByTagName('a')
@@ -437,7 +428,7 @@ class Test extends StageTest {
                 wrong(`Show when the mouse pointer is over the dots`)
         }),
 
-        // Test 43 - Checks dots hovering
+        // Test 41 - Checks dots hovering
 
         this.node.execute(async () => {
             const a = await this.page.findBySelector('a');
@@ -453,7 +444,7 @@ class Test extends StageTest {
         }),
 
 
-        // Test 44 - Checks caption display block
+        // Test 42 - Checks caption display block
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.caption')
@@ -463,7 +454,7 @@ class Test extends StageTest {
                 wrong(`Displays element as a block element`)
         }),
 
-        // Test 45 - Checks margin top of a caption container
+        // Test 43 - Checks margin top of a caption container
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.caption')
@@ -473,7 +464,7 @@ class Test extends StageTest {
                 wrong(`Check the top margin of container element`)
         }),
 
-        // Test 46 - Checks margin top of a caption container
+        // Test 44 - Checks margin top of a caption container
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.caption')
@@ -483,7 +474,7 @@ class Test extends StageTest {
                 wrong(`Your caption should be gray.`)
         }),
 
-        // Test 47 - Checks letter spacing of caption
+        // Test 45 - Checks letter spacing of caption
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.caption')
@@ -493,7 +484,7 @@ class Test extends StageTest {
                 wrong(`Space the letters by 0.5px.`)
         }),
 
-        // Test 48 - Checks font-size of h1 element
+        // Test 46 - Checks font-size of h1 element
 
         this.page.execute(async() => {
             this.articleObj = await document.getElementsByTagName('h1')
@@ -503,7 +494,7 @@ class Test extends StageTest {
                 wrong(`Check font size of main heading.`)
         }),
 
-        // Test 49 - Checks color of h1 element
+        // Test 47 - Checks color of h1 element
 
         this.page.execute(async() => {
             this.articleObj = await document.getElementsByTagName('h1')
@@ -513,7 +504,7 @@ class Test extends StageTest {
                 wrong(`Check color of main heading.`)
         }),
 
-        // Test 50 - Checks font-family of h1 element
+        // Test 48 - Checks font-family of h1 element
 
         this.page.execute(async() => {
             this.articleObj = await document.getElementsByTagName('h1')
