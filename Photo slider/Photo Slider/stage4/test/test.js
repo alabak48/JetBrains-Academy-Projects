@@ -168,42 +168,15 @@ class Test extends StageTest {
                 wrong(`Check the minimum height of the body element`)
         }),
 
-        // Test 12 - Checks body display flex
-
-        this.page.execute(async() => {
-            this.articleObj = await document.getElementsByTagName('body')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.display === "flex" ?
+        // Test 12 - check slider position
+        this.node.execute(async () => {
+            let sliderCoords = await this.page.evaluate(async () => {
+                let slider = document.getElementsByClassName('slider')[0];
+                return [slider.getBoundingClientRect().x, slider.getBoundingClientRect().y];
+            });
+            return sliderCoords[0] === 545 && sliderCoords[1] === 165.375 ?
                 correct() :
-                wrong(`Body element should be set to flexible.`)
-        }),
-
-        // Test 13 - Checks body flex-direction
-        this.page.execute(async() => {
-            this.articleObj = await document.getElementsByTagName('body')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.flexDirection === "column" ?
-                correct() :
-                wrong(`Check the flex direction of the body element.`)
-        }),
-
-        // Test 14 - Checks body justify content
-        this.page.execute(async() => {
-            this.articleObj = await document.getElementsByTagName('body')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.justifyContent === "center" ?
-                correct() :
-                wrong(`Body element content should be set to the center.`)
-        }),
-
-        // Test 15 - Checks body align items
-
-        this.page.execute(async() => {
-            this.articleObj = await document.getElementsByTagName('body')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.alignItems === "center" ?
-                correct() :
-                wrong(`Align body element items to the center`)
+                wrong(`Check position of slider container.`);
         }),
 
         // Test 16 - Check scroll snap of slider

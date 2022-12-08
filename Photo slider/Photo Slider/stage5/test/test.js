@@ -157,42 +157,15 @@ class Test extends StageTest {
                 wrong(`Check overflow x of slider.`)
         }),
 
-        // Test 12 - Check overflow y of slider
-        this.page.execute(async() => {
-            this.articleObj = await document.querySelectorAll('.slider')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.overflowY === "hidden" ?
+        // Test 12 - check slider position
+        this.node.execute(async () => {
+            let sliderCoords = await this.page.evaluate(async () => {
+                let slider = document.getElementsByClassName('slider')[0];
+                return [slider.getBoundingClientRect().x, slider.getBoundingClientRect().y];
+            });
+            return sliderCoords[0] === 545 && sliderCoords[1] === 165.375 ?
                 correct() :
-                wrong(`Check overflow y of slider You answer.`)
-        }),
-
-        // Test 13 - Check overflow y of slider
-        this.page.execute(async() => {
-            this.articleObj = await document.querySelectorAll('.slider')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.scrollSnapType === "x mandatory" ?
-                correct() :
-                wrong(`Check scroll snap type of slider.`)
-        }),
-
-        // Test 14 - Checks body min-height
-
-        this.page.execute(async() => {
-            this.articleObj = await document.getElementsByTagName('body')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.minHeight === "864.9px" ?
-                correct() :
-                wrong(`Check the minimum height of the body element`)
-        }),
-
-        // Test 15 - Checks body display flex
-
-        this.page.execute(async() => {
-            this.articleObj = await document.getElementsByTagName('body')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.display === "flex" ?
-                correct() :
-                wrong(`Body element should be set to flexible.`)
+                wrong(`Check position of slider container.`);
         }),
 
         // Test 16 - Checks body flex-direction
