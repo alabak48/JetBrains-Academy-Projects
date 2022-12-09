@@ -121,25 +121,22 @@ class Test extends StageTest {
                 wrong(`Your grid flow is incorrect.`)
         }),
 
-
         // Test 11 - Check slider position
         this.node.execute(async () => {
             let slider = await this.page.evaluate(async () => {
                 let slider = document.getElementsByClassName('slider')[0];
-                let neededSliderWidth = Math.round(window.innerWidth / 100 * 75);
-                neededSliderWidth = neededSliderWidth < 320 ? 320 : (neededSliderWidth > 800 ? 800 : neededSliderWidth);
+                let bodyWidth = Math.round(window.innerWidth);
                 return {
                     'width': slider.getBoundingClientRect().width,
-                    'neededWidth': neededSliderWidth,
+                    'neededBodyWidth': bodyWidth,
                 }
             });
-
-            return  Math.abs(slider.width - (slider.neededWidth / 2))  ?
+            return  Math.abs((slider.width - slider.neededBodyWidth) / 2) ?
                 correct() :
-                wrong(`Check the position of the slider container`);
+                wrong(`Check position of the slider container`);
         })
-    ]}
 
+    ]}
             it("Test stage", async () => {
                     await new Test().runTests()
                 }
