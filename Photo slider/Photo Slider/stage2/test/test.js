@@ -112,16 +112,8 @@ class Test extends StageTest {
                 wrong(`Set border to the slider as shown on the image.`)
         }),
 
-        // Test 10 - Check overflow y of slider
-        this.page.execute(async() => {
-            this.articleObj = await document.querySelectorAll('.slider')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.gridAutoFlow === "column" ?
-                correct() :
-                wrong(`Your grid flow is incorrect.`)
-        }),
 
-        // Test 11 - Check slider position
+        // Test 10 - Check slider position
         this.node.execute(async () => {
             let slider = await this.page.evaluate(async () => {
                 let slider = document.getElementsByClassName('slider')[0];
