@@ -120,10 +120,12 @@ class Test extends StageTest {
                 let bodyWidth = Math.round(window.innerWidth);
                 return {
                     'width': slider.getBoundingClientRect().width,
-                    'neededBodyWidth': bodyWidth,
+                    'xCoor': slider.getBoundingClientRect().x,
+                    'neededBodyWidth': bodyWidth
+
                 }
             });
-            return  Math.abs((slider.width - slider.neededBodyWidth) / 2) ?
+            return Math.abs((slider.neededBodyWidth - slider.width) / 2) == slider.xCoor ?
                 correct() :
                 wrong(`Check position of the slider container`);
         })
