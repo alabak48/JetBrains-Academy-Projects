@@ -113,15 +113,21 @@ class Test extends StageTest {
         }),
 
 
-        // Test 10 - check slider position
+        // Test 10 - Check slider position
         this.node.execute(async () => {
-            let sliderCoords = await this.page.evaluate(async () => {
+            let slider = await this.page.evaluate(async () => {
                 let slider = document.getElementsByClassName('slider')[0];
-                return [slider.getBoundingClientRect().x, slider.getBoundingClientRect().y];
+                let bodyWidth = Math.round(window.innerWidth);
+                return {
+                    'width': slider.getBoundingClientRect().width,
+                    'xCoor': slider.getBoundingClientRect().x,
+                    'neededBodyWidth': bodyWidth
+
+                }
             });
-            return sliderCoords[0] === 545 && sliderCoords[1] === 190.375 ?
+            return Math.abs((slider.neededBodyWidth - slider.width) / 2) == slider.xCoor ?
                 correct() :
-                wrong(`Check position of slider container.`);
+                wrong(`Check position of the slider container`);
         }),
 
         // Test 11 - Check container 'slide' width
