@@ -289,17 +289,8 @@ class Test extends StageTest {
                 wrong(`Wrong position of dots container.`)
         }),
 
-        // Test 24 - Check dots bottom
 
-        this.page.execute(async() => {
-            this.articleObj = await document.querySelectorAll('.dots')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.bottom === "20px" ?
-                correct() :
-                wrong(`Your dots should be at the bottom of the slider.`)
-        }),
-
-        // Test 25 - Check dots left
+        // Test 24 - Check dots position
 
         this.node.execute(async () => {
             let dotsCoords = await this.page.evaluate(async () => {
@@ -311,7 +302,7 @@ class Test extends StageTest {
                 wrong(`Check position of dots element. ${dotsCoords}`);
         }),
 
-        // Test 26 - Check dots transform
+        // Test 25 - Check dots transform
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -321,7 +312,7 @@ class Test extends StageTest {
                 wrong(`Move the dots element exactly at the center of the main container.`)
         }),
 
-        // Test 27 - Check dots gap
+        // Test 26 - Check dots gap
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -331,7 +322,7 @@ class Test extends StageTest {
                 wrong(`The gap between the dots should be set to 15px.`)
         }),
 
-        // Test 28 - Check dots z-index
+        // Test 27 - Check dots z-index
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -341,7 +332,7 @@ class Test extends StageTest {
                 wrong(`Set the z-index of the dots container to 1.`)
         }),
 
-        // Test 29 - Checks dots display
+        // Test 28 - Checks dots display
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -351,7 +342,7 @@ class Test extends StageTest {
                 wrong(`Dots container should be flexible.`)
         }),
 
-        // Test 30 - Checks item alignment
+        // Test 29 - Checks item alignment
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -361,7 +352,7 @@ class Test extends StageTest {
                 wrong(`Wrong item alignment`)
         }),
 
-        // Test 31 - Checks justify content
+        // Test 30 - Checks justify content
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.dots')
@@ -371,7 +362,7 @@ class Test extends StageTest {
                 wrong(`Wrong content alignment`)
         }),
 
-        // Test 32 - Checks 3 a elements
+        // Test 31 - Checks 3 a elements
 
         this.page.execute(() => {
             this.articleObj = document.getElementsByTagName('a');
@@ -381,7 +372,7 @@ class Test extends StageTest {
                 wrong(`Your page should contain 3 a elements inside .dots container.`)
         }),
 
-        // Test 33 - Checks width and height of a elements
+        // Test 32 - Checks width and height of a elements
 
         this.page.execute(async() => {
             this.articleObj = await document.getElementsByTagName('a')
@@ -391,7 +382,7 @@ class Test extends StageTest {
                 wrong(`Check width and height of the a element`)
         }),
 
-        // Test 34 - Checks border radius of a elements
+        // Test 33 - Checks border radius of a elements
 
         this.page.execute(async() => {
             this.articleObj = await document.getElementsByTagName('a')
@@ -401,7 +392,7 @@ class Test extends StageTest {
                 wrong(`Your dots should be round`)
         }),
 
-        // Test 35 - Checks background color of a elements
+        // Test 34 - Checks background color of a elements
 
         this.page.execute(async() => {
             this.articleObj = await document.getElementsByTagName('a')
@@ -412,7 +403,7 @@ class Test extends StageTest {
         }),
 
 
-        // Test 36 - Checks opacity of a elements
+        // Test 35 - Checks opacity of a elements
 
         this.page.execute(async() => {
             this.articleObj = await document.getElementsByTagName('a')
@@ -422,7 +413,7 @@ class Test extends StageTest {
                 wrong(`Your dots should be transparent`)
         }),
 
-        // Test 37 - Checks transition of a elements
+        // Test 36 - Checks transition of a elements
 
         this.page.execute(async() => {
             this.articleObj = await document.getElementsByTagName('a')
@@ -433,7 +424,7 @@ class Test extends StageTest {
         }),
 
 
-        // Test 38 - Checks cursor pointer
+        // Test 37 - Checks cursor pointer
 
         this.page.execute(async() => {
             this.articleObj = await document.getElementsByTagName('a')
@@ -443,7 +434,7 @@ class Test extends StageTest {
                 wrong(`Show when the mouse pointer is over the dots`)
         }),
 
-        // Test 39 - Checks dots hovering
+        // Test 38 - Checks dots hovering
 
         this.node.execute(async () => {
             const a = await this.page.findBySelector('a');
@@ -459,7 +450,7 @@ class Test extends StageTest {
         }),
 
 
-        // Test 40 - Checks caption display block
+        // Test 39 - Checks caption display block
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.caption')
@@ -469,27 +460,19 @@ class Test extends StageTest {
                 wrong(`Displays element as a block element`)
         }),
 
-        // Test 41 - Checks margin top of a caption container
+        // Test 40 - Checks position of caption container
 
-        this.page.execute(async() => {
-            this.articleObj = await document.querySelectorAll('.caption')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.marginTop === "25px" ?
+        this.node.execute(async () => {
+            let captionCoords = await this.page.evaluate(async () => {
+                let articleObj = document.getElementsByClassName('caption')[0];
+                return [articleObj.getBoundingClientRect().x, articleObj.getBoundingClientRect().y];
+            });
+            return nonStrictCompare(captionCoords[0], 848, 5) ?
                 correct() :
-                wrong(`Check the top margin of container element`)
+                wrong(`Check the position of caption element.`);
         }),
 
-        // Test 42 - Checks margin top of a caption container
-
-        this.page.execute(async() => {
-            this.articleObj = await document.querySelectorAll('.caption')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.backgroundColor === "rgba(0, 0, 0, 0)" ?
-                correct() :
-                wrong(`Your caption should be gray.`)
-        }),
-
-        // Test 43 - Checks letter spacing of caption
+        // Test 41 - Checks letter spacing of caption
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.caption')
@@ -499,17 +482,12 @@ class Test extends StageTest {
                 wrong(`Space the letters by 0.5px.`)
         }),
 
-        // Test 44 - Checks font-size of h1 element
+        // Test 42 - Checks font-size of h1 element
 
-        this.page.execute(async() => {
-            this.articleObj = await document.getElementsByTagName('h1')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.fontSize === "38.6667px" ?
-                correct() :
-                wrong(`Check font size of main heading.`)
-        }),
+       
 
-        // Test 45 - Checks color of h1 element
+
+        // Test 43 - Checks color of h1 element
 
         this.page.execute(async() => {
             this.articleObj = await document.getElementsByTagName('h1')
@@ -519,7 +497,7 @@ class Test extends StageTest {
                 wrong(`Check color of main heading.`)
         }),
 
-        // Test 46 - Checks font-family of h1 element
+        // Test 44 - Checks font-family of h1 element
 
         this.page.execute(async() => {
             this.articleObj = await document.getElementsByTagName('h1')
