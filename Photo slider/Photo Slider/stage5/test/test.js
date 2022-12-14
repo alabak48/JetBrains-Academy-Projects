@@ -306,7 +306,7 @@ class Test extends StageTest {
                 let articleObj = document.getElementsByClassName('dots')[0];
                 return [articleObj.getBoundingClientRect().x, articleObj.getBoundingClientRect().y];
             });
-            return nonStrictCompare(dotsCoords[0], 933,783) ?
+            return nonStrictCompare(dotsCoords[0], 933, 5) ?
                 correct() :
                 wrong(`Check position of dots element. ${dotsCoords}`);
         }),
