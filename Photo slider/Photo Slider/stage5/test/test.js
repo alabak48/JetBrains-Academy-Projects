@@ -10,6 +10,13 @@ function sleep(milliseconds) {
     } while (currentDate - date < milliseconds);
 }
 
+function nonStrictCompare(a, b, offset) {
+    if (!offset) {
+        offset = 10;
+    }
+    return Math.abs(a - b) < offset;
+}
+
 class Test extends StageTest {
 
     page = this.getPage(pagePath)
@@ -294,12 +301,14 @@ class Test extends StageTest {
 
         // Test 25 - Check dots left
 
-        this.page.execute(async() => {
-            this.articleObj = await document.querySelectorAll('.dots')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.left === "415px" ?
+        this.node.execute(async () => {
+            let dotsCoords = await this.page.evaluate(async () => {
+                let articleObj = document.getElementsByClassName('dots')[0];
+                return [articleObj.getBoundingClientRect().x, articleObj.getBoundingClientRect().y];
+            });
+            return nonStrictCompare(dotsCoords[0], 933,783) ?
                 correct() :
-                wrong(`Your dots should be at the center of the slider.`)
+                wrong(`Check position of dots element. ${dotsCoords}`);
         }),
 
         // Test 26 - Check dots transform
