@@ -484,8 +484,14 @@ class Test extends StageTest {
 
         // Test 42 - Checks font-size of h1 element
 
-       
+        this.page.execute(() => {
+           let font = window.getComputedStyle(document.querySelector("h1"));
+            let fontH1 = font.fontSize === '38.6667px';
 
+            return fontH1 ?
+                correct() :
+                wrong(`Check the font size of the main heading. ${font.fontSize}`)
+        }),
 
         // Test 43 - Checks color of h1 element
 
