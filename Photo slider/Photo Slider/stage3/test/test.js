@@ -162,7 +162,7 @@ class Test extends StageTest {
                 }
             });
 
-            return  Math.abs(slide.height - (slide.neededHeight+79)) < 2 ?
+            return  Math.abs(slide.height - (slide.neededHeight)) < 2 ?
                 correct() :
                 wrong(`Check dimensions of .slide (now you have height=${slide.height},
          but according to the dimensions of the window, its dimensions should be: height=${slide.neededHeight}`);
