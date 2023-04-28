@@ -125,7 +125,7 @@ class Test extends StageTest {
 
                 }
             });
-            return Math.abs((slider.neededBodyWidth - slider.width) / 2) - 8.5  == slider.xCoor ?
+            return Math.abs((slider.neededBodyWidth - slider.width) / 2) == slider.xCoor ?
                 correct() :
                 wrong(`Check position of the slider container  ${(slider.neededBodyWidth - slider.width) / 2} ${slider.width} ${slider.xCoor}`);
 

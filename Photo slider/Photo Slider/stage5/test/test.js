@@ -96,7 +96,7 @@ class Test extends StageTest {
             const wrapper = await this.page.findById('slide-1');
             return wrapper ?
                 correct() :
-                wrong(`Your page must contain a slide-1 container.`)
+                wrong(`Your page must contain a slide-1 element.`)
         }),
 
         // Test 7 - Check container '.slide-2'
@@ -188,7 +188,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.overflowX === "auto" ?
                 correct() :
-                wrong(`Check overflow x of slider.`)
+                wrong(`Check overflow x property of slider. Your answer is: ${styles.overflowX}`)
         }),
 
         // Test 14 - Check overflow y of slider
@@ -197,7 +197,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.overflowY === "hidden" ?
                 correct() :
-                wrong(`Check overflow y of slider You answer.`)
+                wrong(`Check overflow y of slider. You answer is ${styles.overflowY}.`)
         }),
 
 
@@ -218,7 +218,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.backgroundRepeat === "no-repeat" ?
                 correct() :
-                wrong(`The background picture is repeated.`)
+                wrong(`The background pictures are repeated.`)
         }),
 
         // Test 17 - Check background size
@@ -238,7 +238,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.backgroundPosition === "50% 50%" ?
                 correct() :
-                wrong(`The background image should be placed in the center.`)
+                wrong(`The background image should be placed in the center. The current background position is set to ${styles.backgroundPosition}`)
         }),
 
         // Test 19   - Check scroll behavior
@@ -286,7 +286,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.position === "absolute" ?
                 correct() :
-                wrong(`Wrong position of dots container.`)
+                wrong(`Wrong position of dots container. Check the position of the dots.`)
         }),
 
 
@@ -311,7 +311,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.transform === "matrix(1, 0, 0, 1, -27, 0)" ?
                 correct() :
-                wrong(`Move the dots element exactly at the center of the main container.`)
+                wrong(`Move the dots element exactly at the center of the main container. The current position of the dots is ${styles.transform}`)
         }),
 
         // Test 26 - Check dots gap
@@ -341,7 +341,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.display === "flex" ?
                 correct() :
-                wrong(`Dots container should be flexible.`)
+                wrong(`Dots container should be flexible. Check display property of the dots.`)
         }),
 
         // Test 29 - Checks item alignment
@@ -391,7 +391,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.borderRadius === "50%" ?
                 correct() :
-                wrong(`Your dots should be round`)
+                wrong(`Your dots should be round. Check the border radius.`)
         }),
 
         // Test 34 - Checks background color of a elements
@@ -401,7 +401,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.backgroundColor === "rgb(255, 255, 255)" ?
                 correct() :
-                wrong(`Your dots should be white.`)
+                wrong(`Your dots should be white. Check background color of the dots.`)
         }),
 
 
@@ -412,8 +412,9 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.opacity === "0.75" ?
                 correct() :
-                wrong(`Your dots should be transparent ${styles.opacity}`)
+                wrong(`Your dots should be transparent. Check the transparency of the dots. Your answer is ${styles.opacity}`)
         }),
+
 
         // Test 36 - Checks transition of a elements
 
@@ -441,14 +442,14 @@ class Test extends StageTest {
         this.node.execute(async () => {
             const a = await this.page.findBySelector('a');
             await a.hover();
-            sleep(400);
+            sleep(900);
             const hoverA = await this.page.findBySelector('a:hover');
 
             const styles = await hoverA.getComputedStyles();
 
             return styles.opacity=== '1' ?
                 correct() :
-                wrong(`Please check the dots hovering.`)
+                wrong(`Please check if the are dots hovering.`)
         }),
 
 
@@ -492,7 +493,7 @@ class Test extends StageTest {
             let fontH1 = Math.abs(fontSize - 38.6667) < 10;
             return fontH1 ?
                 correct() :
-                wrong(`Check the font size of the main heading.`)
+                wrong(`The font size is incorrect. Check the font size of the main heading.`)
         }),
 
         // Test 43 - Checks color of h1 element
@@ -502,7 +503,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.color === "rgb(62, 62, 62)" ?
                 correct() :
-                wrong(`Check color of main heading.`)
+                wrong(`The font color of the main heading is incorrect. Check color of the main heading.`)
         }),
 
         // Test 44 - Checks font-family of h1 element
@@ -511,10 +512,10 @@ class Test extends StageTest {
             this.articleObj = await document.getElementsByTagName('h1')
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.fontFamily !== `Cardo, serif` ?
-                wrong(`Check color of main heading.`) : correct()
+                wrong(`The font-family is incorrect. Check the font-family of the h1 element.`) : correct()
         }),
 
-    ]};
+    ]}
 
 it("Test stage", async () => {
         await new Test().runTests()

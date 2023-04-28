@@ -81,7 +81,7 @@ class Test extends StageTest {
             const wrapper = await this.page.findById('slide-1');
             return wrapper ?
                 correct() :
-                wrong(`Your page must contain a slide-1 container.`)
+                wrong(`Your page must contain a slide-1 element.`)
         }),
 
         // Test 7 - Check container '.slide-2'
@@ -125,7 +125,7 @@ class Test extends StageTest {
 
                 }
             });
-            return Math.abs((slider.neededBodyWidth - slider.width) / 2 - 8.5) == slider.xCoor ?
+            return Math.abs((slider.neededBodyWidth - slider.width) / 2 ) == slider.xCoor ?
                 correct() :
                 wrong(`Check position of the slider container`);
         }),
@@ -176,7 +176,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.overflowX === "auto" ?
                 correct() :
-                wrong(`Check overflow x of slider.`)
+                wrong(`Check overflow x property of slider. Your answer is: ${styles.overflowX}`)
         }),
 
         // Test 14 - Check overflow y of slider
@@ -185,7 +185,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.overflowY === "hidden" ?
                 correct() :
-                wrong(`Check overflow y of slider You answer.`)
+                wrong(`Check overflow y of slider. You answer is ${styles.overflowY}.`)
         }),
 
 
@@ -206,7 +206,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.backgroundRepeat === "no-repeat" ?
                 correct() :
-                wrong(`The background picture is repeated.`)
+                wrong(`The background pictures are repeated.`)
         }),
 
         // Test 17 - Check background size
@@ -226,7 +226,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.backgroundPosition === "50% 50%" ?
                 correct() :
-                wrong(`The background image should be placed in the center.`)
+                wrong(`The background image should be placed in the center. The current background position is set to ${styles.backgroundPosition}`)
         }),
 
 
