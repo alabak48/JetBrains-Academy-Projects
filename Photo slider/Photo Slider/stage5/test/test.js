@@ -139,7 +139,7 @@ class Test extends StageTest {
 
                 }
             });
-            return Math.abs((slider.neededBodyWidth - slider.width) / 2) == slider.xCoor ?
+            return Math.abs((slider.neededBodyWidth - slider.width)  / 2) == slider.xCoor ?
                 correct() :
                 wrong(`Check position of the slider container`);
         }),
@@ -175,7 +175,7 @@ class Test extends StageTest {
                 }
             });
 
-            return  Math.abs(slide.height - (slide.neededHeight+79)) < 2 ?
+            return  Math.abs(slide.height - (slide.neededHeight)) < 2 ?
                 correct() :
                 wrong(`Check dimensions of .slide (now you have height=${slide.height},
          but according to the dimensions of the window, its dimensions should be: height=${slide.neededHeight}`);
@@ -294,12 +294,14 @@ class Test extends StageTest {
 
         this.node.execute(async () => {
             let dotsCoords = await this.page.evaluate(async () => {
-                let articleObj = document.getElementsByClassName('dots')[0];
-                return [articleObj.getBoundingClientRect().x, articleObj.getBoundingClientRect().y];
+                let dotsObj = document.getElementsByClassName('dots')[0].getBoundingClientRect();
+                let sliderObj = document.getElementsByClassName('slider')[0].getBoundingClientRect();
+                return [dotsObj.x, dotsObj.width, sliderObj.width, sliderObj.x];
             });
-            return nonStrictCompare(dotsCoords[0], 933, 5) ?
+
+            return nonStrictCompare((dotsCoords[2] - dotsCoords[1]) / 2, dotsCoords[0] - dotsCoords[3], 5) ?
                 correct() :
-                wrong(`Check position of dots element. ${dotsCoords}`);
+                wrong(`Check position of dots element. Now left-position of this container: ${dotsCoords[0]}, but expected: ${(dotsCoords[2] - dotsCoords[1]) / 2 + dotsCoords[3]}.`);
         }),
 
         // Test 25 - Check dots transform
@@ -410,7 +412,7 @@ class Test extends StageTest {
             let styles = window.getComputedStyle(this.articleObj[0]);
             return styles.opacity === "0.75" ?
                 correct() :
-                wrong(`Your dots should be transparent`)
+                wrong(`Your dots should be transparent ${styles.opacity}`)
         }),
 
         // Test 36 - Checks transition of a elements

@@ -1,9 +1,10 @@
 body {
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 25px;
 }
 
 .slider-wrapper {
@@ -25,7 +26,7 @@ body {
 
 .slide {
     width: clamp(320px, 75vw, 800px);
-    height: clamp(320px, 75vw, 800px);
+    height: clamp(320px, 75vh, 800px);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

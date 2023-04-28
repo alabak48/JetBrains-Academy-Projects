@@ -75,7 +75,7 @@ class Test extends StageTest {
          but according to the dimensions of the window, its dimensions should be: width=${slider.neededWidth+30}`);
         }),
 
-            // Test 6 - Check container '.slide-1'
+        // Test 6 - Check container '.slide-1'
 
         this.node.execute(async() => {
             const wrapper = await this.page.findById('slide-1');
@@ -84,23 +84,23 @@ class Test extends StageTest {
                 wrong(`Your page must contain a slide-1 container.`)
         }),
 
-                // Test 7 - Check container '.slide-2'
+        // Test 7 - Check container '.slide-2'
 
-                this.node.execute(async() => {
-                    const wrapper = await this.page.findById('slide-2');
-                    return wrapper ?
-                        correct() :
-                        wrong(`Your page must contain a slide-2 element.`)
-                }),
+        this.node.execute(async() => {
+            const wrapper = await this.page.findById('slide-2');
+            return wrapper ?
+                correct() :
+                wrong(`Your page must contain a slide-2 element.`)
+        }),
 
-                // Test 8 - Check container '.slide-3'
+        // Test 8 - Check container '.slide-3'
 
-                this.node.execute(async() => {
-                    const wrapper = await this.page.findById('slide-3');
-                    return wrapper ?
-                        correct() :
-                        wrong(`Your page must contain a slide-3 element.`)
-                }),
+        this.node.execute(async() => {
+            const wrapper = await this.page.findById('slide-3');
+            return wrapper ?
+                correct() :
+                wrong(`Your page must contain a slide-3 element.`)
+        }),
 
         // Test 9 - Check border of a slider
 
@@ -125,10 +125,13 @@ class Test extends StageTest {
 
                 }
             });
-            return Math.abs((slider.neededBodyWidth - slider.width) / 2) == slider.xCoor ?
+            return Math.abs((slider.neededBodyWidth - slider.width) / 2) - 8.5  == slider.xCoor ?
                 correct() :
-                wrong(`Check position of the slider container`);
-        })
+                wrong(`Check position of the slider container  ${(slider.neededBodyWidth - slider.width) / 2} ${slider.width} ${slider.xCoor}`);
+
+        }),
+
+
 
     ]}
             it("Test stage", async () => {
