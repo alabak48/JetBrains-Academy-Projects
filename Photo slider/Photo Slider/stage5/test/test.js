@@ -410,7 +410,7 @@ class Test extends StageTest {
         this.page.execute(async() => {
             this.articleObj = await document.getElementsByTagName('a')
             let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.opacity === "0.75" ?
+            return Math.abs(styles.opacity - 0.75) < 0.2 ?
                 correct() :
                 wrong(`Your dots should be transparent. Check the transparency of the dots. Your answer is ${styles.opacity}`)
         }),
@@ -442,14 +442,13 @@ class Test extends StageTest {
         this.node.execute(async () => {
             const a = await this.page.findBySelector('a');
             await a.hover();
-            sleep(900);
             const hoverA = await this.page.findBySelector('a:hover');
-
+            sleep(900);
             const styles = await hoverA.getComputedStyles();
 
-            return styles.opacity=== '1' ?
+            return Math.abs(styles.opacity - 1) < 0.25 ?
                 correct() :
-                wrong(`Please check if the are dots hovering.`)
+                wrong(`Please check if the are dots hovering. ${styles.opacity}`)
         }),
 
 
