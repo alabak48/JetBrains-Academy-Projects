@@ -26,13 +26,22 @@ class Test extends StageTest {
 
         // Test 3 - Check h1 element
         this.page.execute(() => {
-            this.mainTitle = document.getElementsByTagName('h1');
-            return this.mainTitle ?
+            this.heading = document.getElementsByTagName('h1');
+
+            return this.heading.length > 0 ?
                 correct() :
                 wrong(`Your page must contain main title`)
         }),
 
-        // Test 4 - Check width and height of container 'slider'
+        // Test 4 - Check the title
+        this.page.execute(() => {
+            this.documentTitle = document.getElementsByTagName('title');
+            return this.documentTitle ?
+                correct() :
+                wrong(`Your page must contain the title of the project`)
+        }),
+
+        // Test 5 - Check width and height of container 'slider'
         this.node.execute(async () => {
             let slider = await this.page.evaluate(async () => {
                 let slider = document.getElementsByClassName('slider')[0];
@@ -55,8 +64,26 @@ class Test extends StageTest {
          but according to the dimensions of the window, its dimensions should be: width=${slider.neededWidth+30} and height=${slider.neededHeight+30}`);
         }),
 
+        // Test 6 - Check box-shadow of slider
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.slider')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.boxShadow === "rgba(0, 0, 0, 0.2) 0px 2px 15px 0px, rgba(0, 0, 0, 0.25) 0px 2px 20px 0px" ?
+                correct() :
+                wrong(`Set box shadow to the slider container.`)
+        }),
 
-        // Test 5 - Check max-width 'slider'
+        // Test 7 - Check border of a slider
+
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.slider')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.border === "15px solid rgba(255, 255, 255, 0.235)" ?
+                correct() :
+                wrong(`Set border to the slider as shown on the image.`)
+        }),
+
+        // Test 8 - Check max-width 'slider'
         this.node.execute(async () => {
             let slider = await this.page.evaluate(async () => {
                 let slider = document.getElementsByClassName('slider')[0];
@@ -75,7 +102,7 @@ class Test extends StageTest {
          but according to the dimensions of the window, its dimensions should be: width=${slider.neededWidth+30}`);
         }),
 
-        // Test 6 - Check container '.slide-1'
+        // Test 9 - Check container '.slide-1'
 
         this.node.execute(async() => {
             const wrapper = await this.page.findById('slide-1');
@@ -84,7 +111,7 @@ class Test extends StageTest {
                 wrong(`Your page must contain a slide-1 element.`)
         }),
 
-        // Test 7 - Check container '.slide-2'
+        // Test 10 - Check container '.slide-2'
 
         this.node.execute(async() => {
             const wrapper = await this.page.findById('slide-2');
@@ -93,7 +120,7 @@ class Test extends StageTest {
                 wrong(`Your page must contain a slide-2 element.`)
         }),
 
-        // Test 8 - Check container '.slide-3'
+        // Test 11 - Check container '.slide-3'
 
         this.node.execute(async() => {
             const wrapper = await this.page.findById('slide-3');
@@ -102,18 +129,7 @@ class Test extends StageTest {
                 wrong(`Your page must contain a slide-3 element.`)
         }),
 
-        // Test 9 - Check border of a slider
-
-        this.page.execute(async() => {
-            this.articleObj = await document.querySelectorAll('.slider')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.border === "15px solid rgba(255, 255, 255, 0.235)" ?
-                correct() :
-                wrong(`Set border to the slider as shown on the image.`)
-        }),
-
-
-        // Test 10 - Check slider position
+        // Test 12 - Check slider position
         this.node.execute(async () => {
             let slider = await this.page.evaluate(async () => {
                 let slider = document.getElementsByClassName('slider')[0];
@@ -130,7 +146,7 @@ class Test extends StageTest {
                 wrong(`Check position of the slider container`);
         }),
 
-        // Test 11 - Check container 'slide' width
+        // Test 13 - Check container 'slide' width
         this.node.execute(async () => {
             let slide = await this.page.evaluate(async () => {
                 let slide = document.getElementsByClassName('slide')[0];
@@ -149,7 +165,7 @@ class Test extends StageTest {
          but according to the dimensions of the window, its dimensions should be: width=${slide.neededWidth}`);
         }),
 
-        // Test 12 - Check container 'slide' height
+        // Test 14 - Check container 'slide' height
         this.node.execute(async () => {
             let slide = await this.page.evaluate(async () => {
                 let slide = document.getElementsByClassName('slide')[0];
@@ -170,7 +186,7 @@ class Test extends StageTest {
 
 
 
-        // Test 13 - Check overflow x of slider
+        // Test 15 - Check overflow x of slider
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slider')
             let styles = window.getComputedStyle(this.articleObj[0]);
@@ -179,7 +195,7 @@ class Test extends StageTest {
                 wrong(`Check overflow x property of slider. Your answer is: ${styles.overflowX}`)
         }),
 
-        // Test 14 - Check overflow y of slider
+        // Test 16 - Check overflow y of slider
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slider')
             let styles = window.getComputedStyle(this.articleObj[0]);
@@ -188,18 +204,7 @@ class Test extends StageTest {
                 wrong(`Check overflow y of slider. You answer is ${styles.overflowY}.`)
         }),
 
-
-        // Test 15 - Check box-shadow of slider
-        this.page.execute(async() => {
-            this.articleObj = await document.querySelectorAll('.slider')
-            let styles = window.getComputedStyle(this.articleObj[0]);
-            return styles.boxShadow === "rgba(0, 0, 0, 0.2) 0px 2px 15px 0px, rgba(0, 0, 0, 0.25) 0px 2px 20px 0px" ?
-                correct() :
-                wrong(`Set box shadow to the slider container.`)
-        }),
-
-
-        // Test 16 - Check background repeat
+        // Test 17 - Check background repeat
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slide')
@@ -209,7 +214,7 @@ class Test extends StageTest {
                 wrong(`The background pictures are repeated.`)
         }),
 
-        // Test 17 - Check background size
+        // Test 18 - Check background size
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slide')
@@ -219,7 +224,7 @@ class Test extends StageTest {
                 wrong(`The background image must cover the entire slide container.`)
         }),
 
-        // Test 18 - Check background position
+        // Test 19 - Check background position
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slide')
@@ -229,7 +234,7 @@ class Test extends StageTest {
                 wrong(`The background image should be placed in the center. The current background position is set to ${styles.backgroundPosition}`)
         }),
 
-        // Test 19 - Check scroll behavior
+        // Test 20 - Check scroll behavior
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slider')
@@ -239,7 +244,7 @@ class Test extends StageTest {
                 wrong(`The scroll of the slider should be smooth.`)
         }),
 
-        // Test 20 - Check scroll snap align
+        // Test 21 - Check scroll snap align
 
         this.page.execute(async() => {
             this.articleObj = await document.querySelectorAll('.slide')

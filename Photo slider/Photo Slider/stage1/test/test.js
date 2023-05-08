@@ -26,13 +26,22 @@ class Test extends StageTest {
 
         // Test 3 - Check h1 element
         this.page.execute(() => {
-            this.mainTitle = document.getElementsByTagName('h1');
-            return this.mainTitle ?
+            this.heading = document.getElementsByTagName('h1');
+
+            return this.heading.length > 0 ?
                 correct() :
                 wrong(`Your page must contain main title`)
         }),
 
-        // Test 4 - Check width and height of container 'slider'
+        // Test 4 - Check the title
+        this.page.execute(() => {
+            this.documentTitle = document.getElementsByTagName('title');
+            return this.documentTitle ?
+                correct() :
+                wrong(`Your page must contain the title of the project`)
+        }),
+
+        // Test 5 - Check width and height of container 'slider'
         this.node.execute(async () => {
             let slider = await this.page.evaluate(async () => {
                 let slider = document.getElementsByClassName('slider')[0];
@@ -73,7 +82,29 @@ class Test extends StageTest {
                 correct() :
                 wrong(`Check dimensions of .slider (now you have width=${slider.width},
          but according to the dimensions of the window, its dimensions should be: width=${slider.neededWidth+30}`);
-        })]}
+
+
+        }),
+
+        // Test 6 - Check box-shadow of slider
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.slider')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.boxShadow === "rgba(0, 0, 0, 0.2) 0px 2px 15px 0px, rgba(0, 0, 0, 0.25) 0px 2px 20px 0px" ?
+                correct() :
+                wrong(`Set box shadow to the slider container.`)
+        }),
+
+        // Test 7 - Check border of a slider
+
+        this.page.execute(async() => {
+            this.articleObj = await document.querySelectorAll('.slider')
+            let styles = window.getComputedStyle(this.articleObj[0]);
+            return styles.border === "15px solid rgba(255, 255, 255, 0.235)" ?
+                correct() :
+                wrong(`Set border to the slider as shown on the image.`)
+        }),
+    ]}
 
 
 it("Test stage", async () => {

@@ -17,6 +17,6 @@ body {
     display: grid;
     grid-auto-flow: column;
     max-width: clamp(320px, 75vw, 800px);;
-    border: 15px solid rgba(255, 255, 255, 0.234);
+    border: 15px solid rgba(255, 255, 255, 0.235);
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2), 0 2px 20px rgba(0, 0, 0, 0.25);
 }
