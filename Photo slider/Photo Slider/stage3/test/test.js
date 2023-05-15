@@ -170,8 +170,8 @@ class Test extends StageTest {
         this.node.execute(async () => {
             let slide = await this.page.evaluate(async () => {
                 let slide = document.getElementsByClassName('slide')[0];
-                let neededSliderHeight = Math.round(window.innerHeight / 100 * 75);
-                neededSliderHeight = neededSliderHeight < 320 ? 320 : (neededSliderHeight > 800 ? 800 : neededSliderHeight);
+                let slider = document.querySelector(".slider");
+                let neededSliderHeight = slider.offsetHeight - slider.clientTop * 2;
 
                 return {
                     'height': slide.getBoundingClientRect().height,
